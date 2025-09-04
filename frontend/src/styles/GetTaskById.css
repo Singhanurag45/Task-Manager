@@ -1,0 +1,35 @@
+
+.get-task-by-id-container {
+  max-width: 400px;
+  margin: auto;
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+.get-task-by-id-container input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+.get-task-by-id-container button {
+  background: #009933;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+.task-details {
+  margin-top: 20px;
+  padding: 10px;
+  background: #e6ffe6;
+  border-radius: 5px;
+}
+
+.task-card {
+  margin-top: 20px;
+  margin-left: 25px;
+}

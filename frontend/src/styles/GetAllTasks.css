@@ -1,0 +1,18 @@
+
+.get-all-tasks-container {
+  max-width: 600px;
+  margin: auto;
+  background: #f0f8ff;
+  padding: 20px;
+  border-radius: 8px;
+}
+.get-all-tasks-container ul {
+  list-style: none;
+  padding: 0;
+}
+.get-all-tasks-container li {
+  margin: 10px 0;
+  padding: 10px;
+  background: #e6f2ff;
+  border-radius: 5px;
+}

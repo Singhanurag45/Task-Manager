@@ -1,0 +1,29 @@
+
+.update-task-container {
+  max-width: 500px;
+  margin: auto;
+  padding: 20px;
+  background: #e6f7ff;
+  border-radius: 8px;
+  text-align: center;
+}
+.update-task-container input,
+.update-task-container textarea {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+.update-task-container button {
+  padding: 10px 20px;
+  background: #0066cc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.update-task-container p {
+  color: green;
+  margin-top: 10px;
+}
