@@ -1,0 +1,64 @@
+/* TaskForm.css */
+
+.form-container {
+  max-width: 500px;
+  margin: 60px auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.form-heading {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.task-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.task-form input[type="text"],
+.task-form input[type="date"],
+.task-form textarea,
+.task-form select {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #d0d0d0;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+}
+
+.task-form textarea {
+  resize: vertical;
+  height: 100px;
+}
+
+.task-form select {
+  background-color: #fff;
+}
+
+.color-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.task-form button {
+  padding: 12px;
+  background-color: #0066ff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.task-form button:hover {
+  background-color: #004ecc;
+}
