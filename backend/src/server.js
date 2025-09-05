@@ -1,18 +1,36 @@
 import express from "express";
 import mongoose from "mongoose";
-import cors from "cors";
 import dotenv from "dotenv";
+import cors from "cors";
 import taskRoutes from "../routes/taskRoutes.js";
 
 dotenv.config();
 const app = express();
 
+// ✅ Allow frontend origins
+const allowedOrigins = [
+  "http://localhost:5173", // local dev
+  "https://task-manager-alpha-blond-96.vercel.app", // Vercel deployed frontend
+];
+
+app.use(
+  cors({
+    origin: allowedOrigins, // directly pass the array (simpler)
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+
+// ✅ Handle preflight OPTIONS requests
+app.options("*", cors());
+
 // Middleware
-app.use(cors());
 app.use(express.json());
 
 // MongoDB Connection
-const mongoURI = process.env.MONGO_URI || "mongodb://localhost:27017/TaskManager";
+const mongoURI =
+  process.env.MONGO_URI || "mongodb://localhost:27017/TaskManager";
 mongoose
   .connect(mongoURI)
   .then(() => console.log("✅ Connected to MongoDB"))
@@ -23,7 +41,6 @@ mongoose
 
 // Routes
 app.use("/api/tasks", taskRoutes);
-
 
 // Start server
 const PORT = process.env.PORT || 5000;
