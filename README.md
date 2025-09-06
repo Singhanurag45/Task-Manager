@@ -4,7 +4,7 @@ A full-stack task management application built with JavaScript, CSS, and HTML to
 
 Demo
 
-Check it out live: Live Deployment
+Check it out live: https://task-manager-alpha-blond-96.vercel.app/
  
 GitHub
 
@@ -74,22 +74,6 @@ npm run dev
 Access the app
 Visit http://localhost:3000 in your browser to use the app locally.
 
-Project Structure
-Task-Manager/
-├── frontend/
-│   ├── public/
-│   ├── src/
-│   └── package.json
-├── backend/
-│   ├── controllers/
-│   ├── models/
-│   ├── routes/
-│   ├── app.js or server.js
-│   └── package.json
-├── .gitignore
-└── README.md
-
-
 (Adjust according to your actual structure.)
 
 Usage
@@ -117,4 +101,4 @@ Push to your branch (git push origin feature/YourFeature)
 Submit a pull request for review### 📬 Contact  
 
 Created by **[Singhanurag45](https://github.com/Singhanurag45)**.  
-For questions or feedback, feel free to connect with me on [LinkedIn](https://www.linkedin.com/in/singhanurag45/).
+For questions or feedback, feel free to connect with me on [LinkedIn](https://www.linkedin.com/in/anurag-singh-9598b4207/).
