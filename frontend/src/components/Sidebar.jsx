@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "../styles/Sidebar.css"; // Ensure this is imported
+import "../styles/Sidebar.css"; // ✅ Ensure CSS is imported
 import {
   FaHome,
   FaPlusCircle,
@@ -23,7 +23,15 @@ const navItems = [
 
 const Sidebar = () => (
   <aside className="sidebar">
-    <h2>Task Manager</h2>
+    {/* ✅ Logo Section with inline styles for perfect sizing */}
+    <div className="logo-container" style={{ display: 'flex', justifyContent: 'center', padding: '20px 0', borderBottom: '1px solid #333' }}>
+      <img 
+        src="/logo.png" 
+        alt="Task Manager Logo" 
+        style={{ width: "150px", height: "auto", objectFit: "contain" }} // ✅ Forces logo to be small
+      />
+    </div>
+
     <nav>
       <ul className="nav-list">
         {navItems.map(({ name, path, icon }) => (
@@ -34,7 +42,7 @@ const Sidebar = () => (
                 isActive ? "nav-link active" : "nav-link"
               }
             >
-              <span style={{ marginRight: "10px" }}>{icon}</span>
+              <span style={{ marginRight: "10px", fontSize: "1.2rem" }}>{icon}</span>
               {name}
             </NavLink>
           </li>
