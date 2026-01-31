@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "../styles/TaskForm.css"; // Make sure this is imported
-import axios from "../axios";
+import "../styles/TaskForm.css"; 
+import axios from "../axios"; // This is your custom instance
 
 const AddTaskForm = () => {
   const [formData, setFormData] = useState({
@@ -21,17 +21,26 @@ const AddTaskForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(
-        
-        axios.post("/tasks", formData),
-      );
-      if (response.ok) {
-        alert("Task added successfully!");
-      } else {
-        alert("Failed to add task.");
-      }
+      // ✅ FIX: Use axios directly. Do NOT use fetch().
+      // Your "../axios" file already handles the base URL (localhost vs render).
+      await axios.post("/tasks", formData);
+
+      // If code reaches here, it meant success (Axios throws error otherwise)
+      alert("Task added successfully!");
+      
+      // Optional: Clear the form after success
+      setFormData({
+        title: "",
+        description: "",
+        author: "",
+        status: "",
+        color: "#000000",
+        startDate: "",
+        endDate: "",
+      });
+
     } catch (error) {
-      console.error(error);
+      console.error("Error adding task:", error);
       alert("Error occurred while adding task.");
     }
   };
