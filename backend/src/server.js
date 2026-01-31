@@ -7,22 +7,34 @@ import taskRoutes from "../routes/taskRoutes.js";
 dotenv.config();
 const app = express();
 
-// ✅ Allow frontend origins
+// ✅ Define allowed origins
 const allowedOrigins = [
-  "http://localhost:5173", // local dev
-  "https://task-manager-alpha-blond-96.vercel.app", // Vercel deployed frontend
+  "http://localhost:5173", // Local Frontend (Vite)
+  "https://task-manager-alpha-blond-96.vercel.app", // Deployed Frontend (Vercel)
 ];
 
+// ✅ Configure CORS
 app.use(
   cors({
-    origin: allowedOrigins, // directly pass the array (simpler)
-    credentials: true,
+    origin: function (origin, callback) {
+      // Allow requests with no origin (like mobile apps or curl requests)
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.indexOf(origin) === -1) {
+        const msg =
+          "The CORS policy for this site does not allow access from the specified Origin.";
+        return callback(new Error(msg), false);
+      }
+      return callback(null, true);
+    },
+    credentials: true, // Allow cookies/headers
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
-  })
+  }),
 );
 
-
+// ✅ Handle Preflight OPTIONS requests
+// This was causing your crash. We changed "*" to /(.*)/ to fix it.
 app.options(/(.*)/, cors());
 
 // Middleware
@@ -31,6 +43,7 @@ app.use(express.json());
 // MongoDB Connection
 const mongoURI =
   process.env.MONGO_URI || "mongodb://localhost:27017/TaskManager";
+
 mongoose
   .connect(mongoURI)
   .then(() => console.log("✅ Connected to MongoDB"))
@@ -45,5 +58,5 @@ app.use("/api/tasks", taskRoutes);
 // Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`🚀 Server started on http://localhost:${PORT}`);
+  console.log(`🚀 Server started on Port ${PORT}`);
 });

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../styles/TaskForm.css"; // Make sure this is imported
+import axios from "../axios";
 
 const AddTaskForm = () => {
   const [formData, setFormData] = useState({
@@ -21,12 +22,8 @@ const AddTaskForm = () => {
     e.preventDefault();
     try {
       const response = await fetch(
-        "https://task-manager-l2i3.onrender.com/api/tasks",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
-        }
+        
+        axios.post("/tasks", formData),
       );
       if (response.ok) {
         alert("Task added successfully!");
