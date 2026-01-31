@@ -1,104 +1,130 @@
-Task Manager
+## Task Manager
 
-A full-stack task management application built with JavaScript, CSS, and HTML to help users add, edit, delete, and track tasks efficiently. It features color-coded statuses and provides task statistics for a better user experience.
+A full-stack task management app with a **React (Vite)** frontend and an **Express + MongoDB (Mongoose)** backend.
 
-Demo
+### Live links
 
-Check it out live: https://task-manager-alpha-blond-96.vercel.app/
- 
-GitHub
+- **Frontend (Vercel)**: `https://task-manager-alpha-blond-96.vercel.app/`
+- **Backend (Render)**: `https://task-manager-l2i3.onrender.com/api`
 
-Features
+### Features
 
-Add new tasks with custom titles and descriptions.
+- **CRUD tasks**: create, view, update, delete tasks
+- **Statuses**: `Pending`, `In Progress`, `Completed`
+- **Color-coded tasks**
+- **Task stats**: total / completed / in-progress / pending
 
-Edit existing tasks to update details or change status.
+### Tech stack
 
-Delete tasks when they're no longer needed.
+- **Frontend**: React, Vite, React Router, Axios, CSS
+- **Backend**: Node.js, Express, Mongoose, CORS, dotenv
+- **Database**: MongoDB
 
-Color-coded statuses (e.g., To Do, In Progress, Done) for quick visual distinction.
+### Project structure
 
-Task statistics to monitor active, completed, and pending tasks.
+```text
+Task-Manager/
+  backend/
+    src/server.js
+    routes/taskRoutes.js
+    controllers/TaskController.js
+    models/TaskModel.js
+  frontend/
+    src/axios.js
+    src/components/
+```
 
-Tech Stack
-Component	Technology
-Frontend	JavaScript, HTML, CSS
-Backend	(Specify – e.g., Node.js, Express, Python Flask, etc.)
-Database	(Specify – e.g., MongoDB, PostgreSQL, SQLite, etc.)
+### Getting started (local)
 
-(Feel free to update the table above with accurate details of your backend and database technologies.)
+#### Clone the repository
 
-Setup & Installation
-
-Clone the repository
-
+```bash
 git clone https://github.com/Singhanurag45/Task-Manager.git
 cd Task-Manager
+```
 
+#### Prerequisites
 
-Install dependencies
+- **Node.js**: 18+ recommended
+- **MongoDB**: local MongoDB OR a MongoDB Atlas connection string
 
-Frontend:
+#### 1) Backend setup
 
-cd frontend
-npm install
-
-
-Backend:
-
-cd ../backend
-npm install
-
-
-Configure environment variables
-Create a .env file in the backend folder and define the following (as needed):
-
-PORT=5000
-DATABASE_URL=your_database_connection_string
-
-
-Run the development servers
-
-In one terminal (frontend):
-
-cd frontend
-npm start
-
-
-In another terminal (backend):
-
+```bash
 cd backend
+npm install
+```
+
+Create `backend/.env`:
+
+```bash
+PORT=5000
+MONGO_URI=mongodb://localhost:27017/TaskManager
+```
+
+Start the backend:
+
+```bash
 npm run dev
+```
 
+Backend runs on: `http://localhost:5000`
 
-Access the app
-Visit http://localhost:3000 in your browser to use the app locally.
+#### 2) Frontend setup
 
-(Adjust according to your actual structure.)
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-Usage
+Frontend runs on: `http://localhost:5173`
 
-Add Task: Click the “Add Task” button, fill in details, and save.
+#### API base URL used by the frontend
 
-Edit Task: Use the "Edit" option on any task to modify its content or status.
+Frontend axios instance is configured in `frontend/src/axios.js`:
 
-Delete Task: Click the "Delete" button to remove a task.
+- **Development**: `http://localhost:5000/api`
+- **Production**: `https://task-manager-l2i3.onrender.com/api`
 
-View Statistics: Check the dashboard or stats section to see metrics like total, completed, and pending tasks.
+If you change your backend port or URL, update `frontend/src/axios.js` accordingly.
 
-Contribution Guidelines
+### Backend API
 
-Contributions are welcome! Here’s how to get started:
+Base path: `/api/tasks`
 
-Fork this repository
+- **GET** `/api/tasks` — list all tasks
+- **POST** `/api/tasks` — create a task
+- **GET** `/api/tasks/:id` — get a task by id
+- **PUT** `/api/tasks/:id` — update a task by id
+- **DELETE** `/api/tasks/:id` — delete a task by id
+- **GET** `/api/tasks/stats` — task stats summary
 
-Create a feature branch (git checkout -b feature/YourFeature)
+#### Task schema (MongoDB)
 
-Commit your changes (git commit -m 'Add feature')
+The backend stores tasks with these fields (see `backend/models/TaskModel.js`):
 
-Push to your branch (git push origin feature/YourFeature)
+- **title**: string
+- **description**: string
+- **author**: string
+- **status**: string
+- **color**: string (hex)
+- **startDate**: string
+- **endDate**: string
 
-Submit a pull request for review### 📬 Contact  
+### Notes
 
-Created by **[Singhanurag45](https://github.com/Singhanurag45)**.  
-For questions or feedback, feel free to connect with me on [LinkedIn](https://www.linkedin.com/in/anurag-singh-9598b4207/).
+- **CORS**: Allowed origins are configured in `backend/src/server.js` (local Vite + the deployed Vercel domain). If you deploy the frontend to a new URL, add it there.
+- **Security**: Never commit `backend/.env` to git. If a real MongoDB URI/password was ever committed, rotate it immediately.
+
+### Contributing
+
+- Fork the repo
+- Create a branch: `git checkout -b feature/your-feature`
+- Commit: `git commit -m "Describe your change"`
+- Push and open a PR
+
+### Contact
+
+Created by **[Singhanurag45](https://github.com/Singhanurag45)**  
+LinkedIn: `https://www.linkedin.com/in/anurag-singh-9598b4207/`
