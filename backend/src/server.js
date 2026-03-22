@@ -10,7 +10,9 @@ const app = express();
 // ✅ Define allowed origins
 const allowedOrigins = [
   "http://localhost:5173", // Local Frontend (Vite)
-  "https://task-manager-alpha-blond-96.vercel.app", // Deployed Frontend (Vercel)
+  "https://task-manager-alpha-blond-96.vercel.app", 
+  "https://task-manager-git-main-anurag-singhs-projects-5f7d2241.vercel.app",
+   "https://task-manager-bhsabj9bk-anurag-singhs-projects-5f7d2241.vercel.app" 
 ];
 
 // ✅ Configure CORS
