@@ -7,12 +7,20 @@ const DeleteTask = () => {
   const [message, setMessage] = useState("");
 
   const handleDelete = async () => {
+    if (!taskId.trim()) {
+      setMessage("Please enter a Task ID");
+      return;
+    }
+  
     try {
-      await axios.delete(`/tasks/${taskId}`);
+      // Use .trim() to remove any accidental spaces
+      await axios.delete(`/tasks/${taskId.trim()}`);
       setMessage("Task deleted successfully");
       setTaskId("");
     } catch (error) {
-      setMessage("Failed to delete task");
+      // Use + or template literals to display the error message properly
+      const errorMsg = error.response?.data?.message || "Server Error";
+      setMessage(`Failed to delete task. Reason: ${errorMsg}`);
     }
   };
 
