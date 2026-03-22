@@ -89,6 +89,32 @@ Frontend axios instance is configured in `frontend/src/axios.js`:
 
 If you change your backend port or URL, update `frontend/src/axios.js` accordingly.
 
+### Run with Docker (MongoDB Atlas)
+
+1) Put your Atlas connection string in `backend/.env` (used by `docker-compose` via `env_file`):
+
+```bash
+PORT=5000
+MONGO_URI=your_mongodb_atlas_connection_string
+```
+
+2) Optional — override the API URL baked into the frontend build (defaults to `http://localhost:5000/api`). Add to a **root** `.env` next to `docker-compose.yml` when deploying the stack somewhere else:
+
+```bash
+VITE_API_BASE_URL=https://your-public-backend.example.com/api
+```
+
+3) Start:
+
+```bash
+docker compose up --build
+```
+
+4) Open:
+
+- Frontend: `http://localhost:5173`
+- Backend: `http://localhost:5000/api/tasks`
+
 ### Backend API
 
 Base path: `/api/tasks`

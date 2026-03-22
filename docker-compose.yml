@@ -1,0 +1,23 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: task-manager-backend
+    env_file:
+      - ./backend/.env
+    environment:
+      PORT: "5000"
+    ports:
+      - "5000:5000"
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        # Browser-facing API URL (same host ports as published below). Override via root .env for prod deploys.
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost:5000/api}
+    container_name: task-manager-frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
